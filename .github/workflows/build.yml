@@ -152,7 +152,7 @@ jobs:
           run: .\zig-out\bin\TestAll.exe
 
     build-examples-linux:
-        name: Build examples (Linux) ${{ matrix.compiler }} ${{ matrix.shared }}
+        name: Build examples (Linux) ${{ matrix.compiler }} Shared=${{ matrix.shared }}
         runs-on: ubuntu-latest
         strategy:
           fail-fast: false
@@ -180,7 +180,7 @@ jobs:
         steps:
           - uses: actions/checkout@v5
           - name: Setup CMake
-            run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release
+            run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON
           - name: Build library
             run: cmake --build build --parallel
           - name: Install artifacts
@@ -189,11 +189,13 @@ jobs:
             run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install
           - name: Build examples
             run: cmake --build build-examples --parallel
+          - name: List examples
+            run: ls -l build-examples
           - name: Test examples
             run: ./build-examples/ParallelSum_c && ./build-examples/PinnedTask
 
     build-examples-macos:
-        name: Build examples (macOS) ${{ matrix.shared }}
+        name: Build examples (macOS) Shared=${{ matrix.shared }}
         runs-on: macos-latest
         strategy:
           fail-fast: false
@@ -202,7 +204,7 @@ jobs:
         steps:
           - uses: actions/checkout@v5
           - name: Setup CMake
-            run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release
+            run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON
           - name: Build library
             run: cmake --build build --parallel
           - name: Install artifacts
@@ -215,7 +217,7 @@ jobs:
             run: ./build-examples/ParallelSum_c && ./build-examples/PinnedTask
 
     build-examples-windows:
-      name: Build examples (Windows) ${{ matrix.shared }}
+      name: Build examples (Windows) Shared=${{ matrix.shared }}
       runs-on: windows-latest
       strategy:
         fail-fast: false
@@ -224,7 +226,7 @@ jobs:
       steps:
         - uses: actions/checkout@v5
         - name: Setup CMake
-          run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release
+          run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release -DCMAKE_VERBOSE_MAKEFILE=ON
         - name: Build library
           run: cmake --build build --config Release --parallel
         - name: Install artifacts
