@@ -30,7 +30,7 @@ jobs:
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
             - name: Setup examples using installed artifacts
-              run: cmake -S example -B build-static-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-static
+              run: cmake -S example -B build-static-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install-static
             - name: Build examples
               run: cmake --build build-static-examples --parallel
             - name: Test examples
@@ -45,7 +45,7 @@ jobs:
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
             - name: Setup examples using installed artifacts
-              run: cmake -S example -B build-shared-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-shared
+              run: cmake -S example -B build-shared-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install-shared
             - name: Build examples
               run: cmake --build build-shared-examples --parallel
             - name: Test examples
@@ -72,7 +72,7 @@ jobs:
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
             - name: Setup examples using installed artifacts
-              run: cmake -S example -B build-static-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-static
+              run: cmake -S example -B build-static-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install-static
             - name: Build examples
               run: cmake --build build-static-examples --parallel
             - name: Test examples
@@ -87,7 +87,7 @@ jobs:
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
             - name: Setup examples using installed artifacts
-              run: cmake -S example -B build-shared-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-shared
+              run: cmake -S example -B build-shared-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install-shared
             - name: Build examples
               run: cmake --build build-shared-examples --parallel
             - name: Test examples
@@ -131,7 +131,7 @@ jobs:
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
             - name: Setup examples using installed artifacts
-              run: cmake -S example -B build-static-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-static
+              run: cmake -S example -B build-static-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install-static
             - name: Build examples
               run: cmake --build build-static-examples --parallel
             - name: Test examples
@@ -146,7 +146,7 @@ jobs:
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
             - name: Setup examples using installed artifacts
-              run: cmake -S example -B build-shared-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-shared
+              run: cmake -S example -B build-shared-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install-shared
             - name: Build examples
               run: cmake --build build-shared-examples --parallel
             - name: Test examples
@@ -175,7 +175,7 @@ jobs:
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
             - name: Setup examples using installed artifacts
-              run: cmake -S example -B build-static-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-static
+              run: cmake -S example -B build-static-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install-static
             - name: Build examples
               run: cmake --build build-static-examples --parallel
             - name: Test examples
@@ -190,7 +190,7 @@ jobs:
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
             - name: Setup examples using installed artifacts
-              run: cmake -S example -B build-shared-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-shared
+              run: cmake -S example -B build-shared-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install-shared
             - name: Build examples
               run: cmake --build build-shared-examples --parallel
             - name: Test examples
