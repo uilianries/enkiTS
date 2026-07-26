@@ -130,9 +130,10 @@ jobs:
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
-              env:
-                PATH: build-shared\example\Debug;%PATH%
-              run: build-shared\example\Debug\TestAll.exe
+              shell: pwsh
+              run: |
+                  $env:PATH = "$PWD\build-shared\example\Debug;$env:PATH"
+                  build-shared\example\Debug\TestAll.exe
 
     build-windows-win32-zig:
         name: Win32 (Windows, zig)
