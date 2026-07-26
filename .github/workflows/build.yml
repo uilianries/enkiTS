@@ -104,8 +104,8 @@ jobs:
             - name: Test shared library
               run: ./build-shared/example/TestAll
 
-    build-windows-win32-vs2022:
-        name: Win32 (Windows, VS2022)
+    build-windows-win32-vs2026:
+        name: Win32 (Windows, VS2026)
         runs-on: windows-latest
         env:
             CFLAGS: /WX
@@ -114,14 +114,14 @@ jobs:
             - uses: actions/checkout@v5
 
             - name: Configure static library
-              run: cmake -S . -B build-static -G "Visual Studio 18 2022" -D ENKITS_SANITIZE=ON
+              run: cmake -S . -B build-static -G "Visual Studio 19 2026" -D ENKITS_SANITIZE=ON
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
               run: .\build-static\example\Debug\TestAll.exe
 
             - name: Configure shared library
-              run: cmake -S . -B build-shared -G "Visual Studio 18 2022" -D ENKITS_BUILD_SHARED=ON
+              run: cmake -S . -B build-shared -G "Visual Studio 19 2026" -D ENKITS_BUILD_SHARED=ON
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
