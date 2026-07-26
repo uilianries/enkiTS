@@ -26,7 +26,7 @@ jobs:
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
-              run: ./build-static/TestAll
+              run: ./build-static/example/TestAll
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
             - name: Setup examples using installed artifacts
@@ -41,7 +41,7 @@ jobs:
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
-              run: ./build-shared/TestAll
+              run: ./build-shared/example/TestAll
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
             - name: Setup examples using installed artifacts
@@ -68,7 +68,7 @@ jobs:
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
-              run: ./build-static/TestAll
+              run: ./build-static/example/TestAll
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
             - name: Setup examples using installed artifacts
@@ -83,7 +83,7 @@ jobs:
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
-              run: ./build-shared/TestAll
+              run: ./build-shared/example/TestAll
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
             - name: Setup examples using installed artifacts
@@ -127,7 +127,7 @@ jobs:
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
-              run: ./build-static/TestAll
+              run: ./build-static/example/TestAll
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
             - name: Setup examples using installed artifacts
@@ -142,7 +142,7 @@ jobs:
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
-              run: ./build-shared/TestAll
+              run: ./build-shared/example/TestAll
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
             - name: Setup examples using installed artifacts
@@ -171,7 +171,7 @@ jobs:
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
-              run: .\build-static\Debug\TestAll.exe
+              run: .\build-static\example\Debug\TestAll.exe
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
             - name: Setup examples using installed artifacts
@@ -186,7 +186,7 @@ jobs:
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
-              run: .\build-shared\Debug\TestAll.exe
+              run: .\build-shared\example\Debug\TestAll.exe
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
             - name: Setup examples using installed artifacts
