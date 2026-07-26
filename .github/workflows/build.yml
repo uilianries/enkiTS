@@ -29,6 +29,12 @@ jobs:
               run: ./build-static/TestAll
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
+            - name: Setup examples using installed artifacts
+              run: cmake -S example -B build-static-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-static
+            - name: Build examples
+              run: cmake --build build-static-examples --parallel
+            - name: Test examples
+              run: ./build-static-examples/ParallelSum_c && ./build-static-examples/PinnedTask
 
             - name: Configure shared library
               run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON -DENKITS_INSTALL=ON
@@ -38,6 +44,12 @@ jobs:
               run: ./build-shared/TestAll
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
+            - name: Setup examples using installed artifacts
+              run: cmake -S example -B build-shared-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-shared
+            - name: Build examples
+              run: cmake --build build-shared-examples --parallel
+            - name: Test examples
+              run: ./build-shared-examples/ParallelSum_c && ./build-shared-examples/PinnedTask
 
     build-linux-gcc:
         name: Linux, gcc
@@ -52,13 +64,19 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Configure static library
-              run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON -DENKITS_INSTALL
+              run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON -DENKITS_INSTALL=ON
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
               run: ./build-static/TestAll
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
+            - name: Setup examples using installed artifacts
+              run: cmake -S example -B build-static-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-static
+            - name: Build examples
+              run: cmake --build build-static-examples --parallel
+            - name: Test examples
+              run: ./build-static-examples/ParallelSum_c && ./build-static-examples/PinnedTask
 
             - name: Configure shared library
               run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON -DENKITS_INSTALL=ON
@@ -68,6 +86,12 @@ jobs:
               run: ./build-shared/TestAll
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
+            - name: Setup examples using installed artifacts
+              run: cmake -S example -B build-shared-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-shared
+            - name: Build examples
+              run: cmake --build build-shared-examples --parallel
+            - name: Test examples
+              run: ./build-shared-examples/ParallelSum_c && ./build-shared-examples/PinnedTask
 
     build-ubuntu-zig:
         name: Linux, zig
@@ -106,6 +130,12 @@ jobs:
               run: ./build-static/TestAll
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
+            - name: Setup examples using installed artifacts
+              run: cmake -S example -B build-static-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-static
+            - name: Build examples
+              run: cmake --build build-static-examples --parallel
+            - name: Test examples
+              run: ./build-static-examples/ParallelSum_c && ./build-static-examples/PinnedTask
 
             - name: Configure shared library
               run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON -DENKITS_INSTALL=ON
@@ -115,6 +145,12 @@ jobs:
               run: ./build-shared/TestAll
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
+            - name: Setup examples using installed artifacts
+              run: cmake -S example -B build-shared-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-shared
+            - name: Build examples
+              run: cmake --build build-shared-examples --parallel
+            - name: Test examples
+              run: ./build-shared-examples/ParallelSum_c && ./build-shared-examples/PinnedTask
 
     build-windows-win32-vs2022:
         name: Win32 (Windows, VS2022)
@@ -138,6 +174,12 @@ jobs:
               run: .\build-static\Debug\TestAll.exe
             - name: Install static artifacts
               run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
+            - name: Setup examples using installed artifacts
+              run: cmake -S example -B build-static-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-static
+            - name: Build examples
+              run: cmake --build build-static-examples --parallel
+            - name: Test examples
+              run: .\build-static-examples\Debug\ParallelSum_c.exe && .\build-static-examples\Debug\PinnedTask.exe
 
             - name: Configure shared library
               run: cmake -S . -B build-shared -G "Visual Studio 17 2022" -D ENKITS_BUILD_SHARED=ON -DENKITS_INSTALL=ON
@@ -147,6 +189,12 @@ jobs:
               run: .\build-shared\Debug\TestAll.exe
             - name: Install shared artifacts
               run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
+            - name: Setup examples using installed artifacts
+              run: cmake -S example -B build-shared-examples -D ENKITS_INSTALL_DIR=${{ github.workspace }}/install-shared
+            - name: Build examples
+              run: cmake --build build-shared-examples --parallel
+            - name: Test examples
+              run: .\build-shared-examples\Debug\ParallelSum_c.exe && .\build-shared-examples\Debug\PinnedTask.exe
 
     build-windows-win32-zig:
         name: Win32 (Windows, zig)
