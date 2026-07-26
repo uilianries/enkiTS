@@ -118,14 +118,14 @@ jobs:
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
-              run: .\build-static\example\Debug\TestAll.exe
+              run: build-static\example\Debug\TestAll.exe
 
             - name: Configure shared library
               run: cmake -S . -B build-shared -G "Visual Studio 18 2026" -D ENKITS_BUILD_SHARED=ON
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
-              run: .\build-shared\example\Debug\TestAll.exe
+              run: build-shared\example\Debug\TestAll.exe
 
     build-windows-win32-zig:
         name: Win32 (Windows, zig)
