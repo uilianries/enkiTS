@@ -19,7 +19,7 @@ jobs:
             CXXFLAGS: -Werror
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v7
 
             - name: Configure static library
               run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON
@@ -45,7 +45,7 @@ jobs:
             CXXFLAGS: -Werror
 
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v7
 
             - name: Configure static library
               run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON
@@ -65,7 +65,7 @@ jobs:
         name: Linux, zig
         runs-on: ubuntu-latest
         steps:
-          - uses: actions/checkout@v5
+          - uses: actions/checkout@v7
           - uses: mlugg/setup-zig@v2
             with:
               version: 0.15.1
@@ -88,7 +88,7 @@ jobs:
             CFLAGS: -Werror
             CXXFLAGS: -Werror
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v7
 
             - name: Configure static library
               run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON
@@ -111,7 +111,7 @@ jobs:
             CFLAGS: /WX
             CXXFLAGS: /WX
         steps:
-            - uses: actions/checkout@v5
+            - uses: actions/checkout@v7
 
             - name: Setup MSVC dev command prompt
               uses: TheMrMilchmann/setup-msvc-dev@v3
@@ -139,7 +139,7 @@ jobs:
         name: Win32 (Windows, zig)
         runs-on: windows-latest
         steps:
-        - uses: actions/checkout@v5
+        - uses: actions/checkout@v7
         - uses: mlugg/setup-zig@v2
           with:
             version: 0.15.1
@@ -180,7 +180,7 @@ jobs:
           CC: ${{ matrix.cc }}
           CXX: ${{ matrix.cxx }}
         steps:
-          - uses: actions/checkout@v5
+          - uses: actions/checkout@v7
           - name: Setup CMake
             run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release -DENKITS_BUILD_C_INTERFACE=ON
           - name: Build library
@@ -201,7 +201,7 @@ jobs:
           matrix:
             shared: ["ON", "OFF"]
         steps:
-          - uses: actions/checkout@v5
+          - uses: actions/checkout@v7
           - name: Setup CMake
             run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release -DENKITS_BUILD_C_INTERFACE=ON
           - name: Build library
@@ -222,7 +222,7 @@ jobs:
         matrix:
           shared: ["ON", "OFF"]
       steps:
-        - uses: actions/checkout@v5
+        - uses: actions/checkout@v7
         - name: Setup CMake
           run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release -DENKITS_BUILD_C_INTERFACE=ON
         - name: Build library
