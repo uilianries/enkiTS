@@ -22,22 +22,18 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Configure static library
-              run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON -DENKITS_INSTALL=ON
+              run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
               run: ./build-static/TestAll
-            - name: Install static artifacts
-              run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
 
             - name: Configure shared library
-              run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON -DENKITS_INSTALL=ON
+              run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
               run: ./build-shared/TestAll
-            - name: Install shared artifacts
-              run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
 
     build-linux-gcc:
         name: Linux, gcc
@@ -52,22 +48,18 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Configure static library
-              run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON -DENKITS_INSTALL
+              run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
               run: ./build-static/TestAll
-            - name: Install static artifacts
-              run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
 
             - name: Configure shared library
-              run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON -DENKITS_INSTALL=ON
+              run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
               run: ./build-shared/TestAll
-            - name: Install shared artifacts
-              run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
 
     build-ubuntu-zig:
         name: Linux, zig
@@ -99,22 +91,18 @@ jobs:
             - uses: actions/checkout@v3
 
             - name: Configure static library
-              run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON -DENKITS_INSTALL=ON
+              run: cmake -S . -B build-static -D ENKITS_SANITIZE=ON
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
               run: ./build-static/TestAll
-            - name: Install static artifacts
-              run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
 
             - name: Configure shared library
-              run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON -DENKITS_INSTALL=ON
+              run: cmake -S . -B build-shared -D ENKITS_BUILD_SHARED=ON
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
               run: ./build-shared/TestAll
-            - name: Install shared artifacts
-              run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
 
     build-windows-win32-vs2022:
         name: Win32 (Windows, VS2022)
@@ -131,22 +119,18 @@ jobs:
                 arch: x64
 
             - name: Configure static library
-              run: cmake -S . -B build-static -G "Visual Studio 17 2022" -D ENKITS_SANITIZE=ON -DENKITS_INSTALL=ON
+              run: cmake -S . -B build-static -G "Visual Studio 17 2022" -D ENKITS_SANITIZE=ON
             - name: Build static library
               run: cmake --build build-static --parallel
             - name: Test static library
               run: .\build-static\Debug\TestAll.exe
-            - name: Install static artifacts
-              run: cmake --install build-static --prefix ${{ github.workspace }}/install-static
 
             - name: Configure shared library
-              run: cmake -S . -B build-shared -G "Visual Studio 17 2022" -D ENKITS_BUILD_SHARED=ON -DENKITS_INSTALL=ON
+              run: cmake -S . -B build-shared -G "Visual Studio 17 2022" -D ENKITS_BUILD_SHARED=ON
             - name: Build shared library
               run: cmake --build build-shared --parallel
             - name: Test shared library
               run: .\build-shared\Debug\TestAll.exe
-            - name: Install shared artifacts
-              run: cmake --install build-shared --prefix ${{ github.workspace }}/install-shared
 
     build-windows-win32-zig:
         name: Win32 (Windows, zig)
