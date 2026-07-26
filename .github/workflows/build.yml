@@ -186,7 +186,7 @@ jobs:
           - name: Install artifacts
             run: cmake --install build --prefix ${{ github.workspace }}/install
           - name: Setup examples using installed artifacts
-            run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install
+            run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install -DCMAKE_BUILD_TYPE=Release -DENKITS_BUILD_C_INTERFACE=ON
           - name: Build examples
             run: cmake --build build-examples --parallel
           - name: Test examples
@@ -208,7 +208,7 @@ jobs:
           - name: Install artifacts
             run: cmake --install build --prefix ${{ github.workspace }}/install
           - name: Setup examples using installed artifacts
-            run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install
+            run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install -DCMAKE_BUILD_TYPE=Release -DENKITS_BUILD_C_INTERFACE=ON
           - name: Build examples
             run: cmake --build build-examples --parallel
           - name: Test examples
@@ -230,7 +230,7 @@ jobs:
         - name: Install artifacts
           run: cmake --install build --prefix ${{ github.workspace }}/install --config Release
         - name: Setup examples using installed artifacts
-          run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install
+          run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install -DENKITS_BUILD_C_INTERFACE=ON
         - name: Build examples
           run: cmake --build build-examples --config Release --parallel
         - name: Test examples
