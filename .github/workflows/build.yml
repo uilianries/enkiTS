@@ -191,6 +191,7 @@ jobs:
             run: cmake --build build-examples --parallel
           - name: Test examples
             run: ./build-examples/ParallelSum_c && ./build-examples/PinnedTask
+
     build-examples-macos:
         name: Build examples (macOS) ${{ matrix.shared }}
         runs-on: macos-latest
@@ -213,26 +214,26 @@ jobs:
           - name: Test examples
             run: ./build-examples/ParallelSum_c && ./build-examples/PinnedTask
 
-      build-examples-windows:
-        name: Build examples (Windows) ${{ matrix.shared }}
-        runs-on: windows-latest
-        strategy:
-          fail-fast: false
-          matrix:
-            shared: ["ON", "OFF"]
-        steps:
-          - uses: actions/checkout@v5
-          - name: Setup CMake
-            run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release
-          - name: Build library
-            run: cmake --build build --config Release --parallel
-          - name: Install artifacts
-            run: cmake --install build --prefix ${{ github.workspace }}/install --config Release
-          - name: Setup examples using installed artifacts
-            run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install
-          - name: Build examples
-            run: cmake --build build-examples --config Release --parallel
-          - name: Test examples
-            shell: bash
-            run: |
-              ./build-examples/Release/ParallelSum_c.exe && ./build-examples/Release/PinnedTask.exe
+    build-examples-windows:
+      name: Build examples (Windows) ${{ matrix.shared }}
+      runs-on: windows-latest
+      strategy:
+        fail-fast: false
+        matrix:
+          shared: ["ON", "OFF"]
+      steps:
+        - uses: actions/checkout@v5
+        - name: Setup CMake
+          run: cmake -S . -B build -DENKITS_BUILD_EXAMPLES=OFF -DENKITS_BUILD_SHARED=${{ matrix.shared }} -DENKITS_INSTALL=ON -DCMAKE_BUILD_TYPE=Release
+        - name: Build library
+          run: cmake --build build --config Release --parallel
+        - name: Install artifacts
+          run: cmake --install build --prefix ${{ github.workspace }}/install --config Release
+        - name: Setup examples using installed artifacts
+          run: cmake -S example -B build-examples -DCMAKE_PREFIX_PATH=${{ github.workspace }}/install
+        - name: Build examples
+          run: cmake --build build-examples --config Release --parallel
+        - name: Test examples
+          shell: bash
+          run: |
+            ./build-examples/Release/ParallelSum_c.exe && ./build-examples/Release/PinnedTask.exe
